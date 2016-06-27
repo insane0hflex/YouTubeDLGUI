@@ -7,14 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <TextBox x:Name="txt_downloadURL" HorizontalAlignment="Left" Height="23" Margin="110,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
-        <TextBox x:Name="txt_outputPath" HorizontalAlignment="Left" Height="23" Margin="110,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
-        <Label x:Name="label" Content="Download URL" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.132,0.385"/>
-        <Label x:Name="label1" Content="Output Path" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_download" Content="Download" HorizontalAlignment="Left" Margin="355,104,0,0" VerticalAlignment="Top" Width="75" Click="btn_download_Click"/>
-        <TextBox x:Name="txt_log" HorizontalAlignment="Left" IsReadOnly="True" Height="144" Margin="10,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="497" />
-        <TextBox x:Name="txt_outputFileName" HorizontalAlignment="Left" Height="23" Margin="119,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="191"/>
-        <Label x:Name="label1_Copy" Content="Output File Name" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_downloadURL" HorizontalAlignment="Left" Height="23" Margin="119,14,0,0" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" Text="" VerticalAlignment="Top" Width="388"/>
+        <TextBox x:Name="txt_outputPath" HorizontalAlignment="Left" Height="23" Margin="119,50,0,0" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" Text="" VerticalAlignment="Top" Width="388"/>
+        <Label x:Name="label" Content="Download URL" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
+        <Label x:Name="label1" Content="Output Path" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_download" Content="Download" HorizontalAlignment="Left" Margin="325,85,0,0" VerticalAlignment="Top" Width="152" Click="btn_download_Click" Height="23"/>
+        <TextBox x:Name="txt_log" HorizontalAlignment="Left" IsReadOnly="True" Height="109" Margin="10,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="497" />
+        <TextBox x:Name="txt_outputFileName" AcceptsReturn="False" AcceptsTab="False" HorizontalAlignment="Left" Height="23" Margin="119,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="191"/>
+        <Label x:Name="label2" Content="Output File Name" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Content="Program Log:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,172,0,0"/>
+        <TextBox x:Name="txt_customArgs" HorizontalAlignment="Left" Height="23" Margin="119,120,0,0" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" Text="" VerticalAlignment="Top" Width="388"/>
+        <Label x:Name="label4" Content="Custom Args" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chk_downloadAsVideo" Content="Download as video (.mp4)" HorizontalAlignment="Left" Margin="40,155,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chk_downloadAsAudio" Content="Download as audio (.mp3)" HorizontalAlignment="Left" Margin="206,155,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

@@ -21,38 +21,74 @@ namespace YouTubeDLGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string YouTubeDLFilePath = @"C:\youtube-dl\youtube-dl.exe";
         //public string YouTubeDLFilePath = Environment.CurrentDirectory + @"\youtube-dl.exe";
+        public string YouTubeDLFilePath = @"C:\youtube-dl\youtube-dl.exe";
         
         //Might never be used... youtube-dl will look for ffmpeg in its current directory by default
         //public string FfmpegFilePath = Environment.CurrentDirectory + @"\ffmpeg.exe";
         
         public MainWindow()
         {
+            InitializeComponent();
+
             txt_outputPath.Text = Environment.CurrentDirectory;
 
-            InitializeComponent();
+            //set defaults for download file output
+            chk_downloadAsAudio.IsChecked = true;
+            chk_downloadAsVideo.IsChecked = false;
+
         }
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void btn_download_Click(object sender, RoutedEventArgs e)
         {
+            Download();
+        }
+
+        public void Download()
+        {
+            string downloadedFileExt = "";
+
+            //ToDo: not getting hour and minutes correctly??
+            //24 hour time like 6-27-2016_09-33
+            string downloadDate = DateTime.Today.ToString("M/d/yyyy HH:mm").Replace(':', '-').Replace('/','-').Replace(' ','_');
+
+            if (chk_downloadAsAudio.IsChecked == true)
+            {
+                downloadedFileExt = ".mp3";
+            }
+            else
+            {
+                downloadedFileExt = ".mp4";
+            }
 
             if (String.IsNullOrEmpty(txt_outputFileName.Text))
             {
-                txt_outputFileName.Text = "youtube-dl-download_" + DateTime.Today.ToFileTime() + ".mp3";
+                txt_outputFileName.Text = "youtube-dl-download_" + DateTime.Today.ToFileTime() + downloadedFileExt;
+            }
+
+            if (!String.IsNullOrEmpty(txt_customArgs.Text))
+            {
+                Process.Start(YouTubeDLFilePath, txt_customArgs.Text);
+                txt_log.AppendText(txt_downloadURL.Text + " downloaded with custom args: " + Environment.NewLine + "\t" + txt_customArgs.Text);
+                return;
             }
 
             string args = " " + txt_downloadURL.Text.Trim() + " -o " + txt_outputPath.Text + "\\" + txt_outputFileName.Text + ".mp3";
+
+            //shorter filename?
+            //In some cases, you don't want special characters such as 中, spaces, or &, 
+            //such as when transferring the downloaded filename to a Windows system
+            args += " --restrict-filenames";
 
             Process.Start(YouTubeDLFilePath, args);
 
             txt_log.AppendText(txt_downloadURL.Text + " downloaded as: " + Environment.NewLine + "\t" + txt_outputFileName.Text);
             txt_log.AppendText(Environment.NewLine);
+
         }
-
-
 
 
         /// <summary>
