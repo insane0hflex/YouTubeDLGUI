@@ -22,7 +22,11 @@ namespace YouTubeDLGUI
     public partial class MainWindow : Window
     {
         public string YouTubeDLFilePath = @"C:\youtube-dl\youtube-dl.exe";
-
+        //public string YouTubeDLFilePath = Environment.CurrentDirectory + @"\youtube-dl.exe";
+        
+        //Might never be used... youtube-dl will look for ffmpeg in its current directory by default
+        //public string FfmpegFilePath = Environment.CurrentDirectory + @"\ffmpeg.exe";
+        
         public MainWindow()
         {
             txt_outputPath.Text = Environment.CurrentDirectory;
