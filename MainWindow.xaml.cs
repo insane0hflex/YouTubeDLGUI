@@ -80,14 +80,22 @@ namespace YouTubeDLGUI
                 txt_outputFileName.Text = "youtube-dl-download_" + downloadDateTime + downloadedFileExt;
             }
 
+            //if custom args are given
             if (!String.IsNullOrEmpty(txt_customArgs.Text))
             {
-                Process.Start(YouTubeDLFilePath, txt_customArgs.Text);
+                string customArgs = txt_downloadURL.Text + " " + txt_customArgs.Text;
+                Process.Start(YouTubeDLFilePath, customArgs);
                 txt_log.AppendText(downloadDateTime + ": " + txt_downloadURL.Text + " downloaded with custom args: " + Environment.NewLine + "\t" + txt_customArgs.Text);
                 return;
             }
 
-            string args = " " + txt_downloadURL.Text.Trim() + " -o " + txt_outputPath.Text + "\\" + txt_outputFileName.Text + ".mp3";
+            string args = " " + txt_downloadURL.Text.Trim() + " -o " + txt_outputPath.Text + "\\" + txt_outputFileName.Text + downloadedFileExt;
+
+            //force audio download from youtube
+            if (downloadedFileExt == ".mp3")// && txt_downloadURL.Text.Contains("*youtube.com*")
+            {
+                args += " --extract-audio --audio-format mp3 -l";
+            }
 
             //shorter filename?
             //In some cases, you don't want special characters such as 中, spaces, or &, 
