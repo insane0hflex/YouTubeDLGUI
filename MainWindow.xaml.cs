@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -47,31 +47,43 @@ namespace YouTubeDLGUI
             Download();
         }
 
-        public void Download()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>File extension/format - like .mp3</returns>
+        private string GetOutputFileFormat()
         {
-            string downloadedFileExt = "";
-
-            //24 hour time like 6-27-2016_09-33
-            string downloadDate = DateTime.Now.ToString("M-d-yyyy_HH-mm");
-
+            //cuz nullable bool?
             if (chk_downloadAsAudio.IsChecked == true)
             {
-                downloadedFileExt = ".mp3";
+                return ".mp3";
             }
             else
             {
-                downloadedFileExt = ".mp4";
+                return ".mp4";
             }
+        }
+
+
+        /// <summary>
+        /// Invoke the youtube-dl.exe and pass it arguments from the GUI to download a video/audio file
+        /// </summary>
+        public void Download()
+        {
+            string downloadedFileExt = GetOutputFileFormat();
+
+            //24 hour time like 6-27-2016_09-33
+            string downloadDateTime = DateTime.Now.ToString("M-d-yyyy_HH-mm");
 
             if (String.IsNullOrEmpty(txt_outputFileName.Text))
             {
-                txt_outputFileName.Text = "youtube-dl-download_" + downloadDate + downloadedFileExt;
+                txt_outputFileName.Text = "youtube-dl-download_" + downloadDateTime + downloadedFileExt;
             }
 
             if (!String.IsNullOrEmpty(txt_customArgs.Text))
             {
                 Process.Start(YouTubeDLFilePath, txt_customArgs.Text);
-                txt_log.AppendText(txt_downloadURL.Text + " downloaded with custom args: " + Environment.NewLine + "\t" + txt_customArgs.Text);
+                txt_log.AppendText(downloadDateTime + ": " + txt_downloadURL.Text + " downloaded with custom args: " + Environment.NewLine + "\t" + txt_customArgs.Text);
                 return;
             }
 
@@ -84,7 +96,7 @@ namespace YouTubeDLGUI
 
             Process.Start(YouTubeDLFilePath, args);
 
-            txt_log.AppendText(txt_downloadURL.Text + " downloaded as: " + Environment.NewLine + "\t" + txt_outputFileName.Text);
+            txt_log.AppendText(downloadDateTime + ": " + txt_downloadURL.Text + " downloaded as: " + Environment.NewLine + "\t" + txt_outputFileName.Text);
             txt_log.AppendText(Environment.NewLine);
 
         }
