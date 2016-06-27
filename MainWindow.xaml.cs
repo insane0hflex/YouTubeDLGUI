@@ -51,9 +51,8 @@ namespace YouTubeDLGUI
         {
             string downloadedFileExt = "";
 
-            //ToDo: not getting hour and minutes correctly??
             //24 hour time like 6-27-2016_09-33
-            string downloadDate = DateTime.Today.ToString("M/d/yyyy HH:mm").Replace(':', '-').Replace('/','-').Replace(' ','_');
+            string downloadDate = DateTime.Now.ToString("M-d-yyyy_HH-mm");
 
             if (chk_downloadAsAudio.IsChecked == true)
             {
@@ -66,7 +65,7 @@ namespace YouTubeDLGUI
 
             if (String.IsNullOrEmpty(txt_outputFileName.Text))
             {
-                txt_outputFileName.Text = "youtube-dl-download_" + DateTime.Today.ToFileTime() + downloadedFileExt;
+                txt_outputFileName.Text = "youtube-dl-download_" + downloadDate + downloadedFileExt;
             }
 
             if (!String.IsNullOrEmpty(txt_customArgs.Text))
