@@ -40,7 +40,7 @@ namespace YouTubeDLGUI
         }
 
         /// <summary>
-        /// 
+        /// Initiate download
         /// </summary>
         private void btn_download_Click(object sender, RoutedEventArgs e)
         {
@@ -48,7 +48,7 @@ namespace YouTubeDLGUI
         }
 
         /// <summary>
-        /// 
+        /// Get the download output file format/type/extension
         /// </summary>
         /// <returns>File extension/format - like .mp3</returns>
         private string GetOutputFileFormat()
