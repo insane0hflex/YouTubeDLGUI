@@ -18,8 +18,8 @@
         <Label x:Name="label3" Content="Program Log:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,172,0,0"/>
         <TextBox x:Name="txt_customArgs" HorizontalAlignment="Left" Height="23" Margin="119,120,0,0" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" Text="" VerticalAlignment="Top" Width="388"/>
         <Label x:Name="label4" Content="Custom Args" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chk_downloadAsVideo" Content="Download as video (.mp4)" HorizontalAlignment="Left" Margin="40,155,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chk_downloadAsAudio" Content="Download as audio (.mp3)" HorizontalAlignment="Left" Margin="206,155,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbtn_downloadAsVideo" IsChecked="True" Content="Download as video .mp4" GroupName="FileFormat" HorizontalAlignment="Left" Margin="140,161,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbtn_downloadAsAudio" Content="Download as audio .mp3" GroupName="FileFormat" HorizontalAlignment="Left" Margin="325,163,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
