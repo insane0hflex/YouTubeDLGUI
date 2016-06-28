@@ -33,10 +33,6 @@ namespace YouTubeDLGUI
 
             txt_outputPath.Text = Environment.CurrentDirectory;
 
-            //set defaults for download file output
-            chk_downloadAsAudio.IsChecked = true;
-            chk_downloadAsVideo.IsChecked = false;
-
         }
 
         /// <summary>
@@ -53,8 +49,8 @@ namespace YouTubeDLGUI
         /// <returns>File extension/format - like .mp3</returns>
         private string GetOutputFileFormat()
         {
-            //cuz nullable bool?
-            if (chk_downloadAsAudio.IsChecked == true)
+            // == true cuz nullable bool
+            if (rbtn_downloadAsAudio.IsPressed == true)
             {
                 return ".mp3";
             }
