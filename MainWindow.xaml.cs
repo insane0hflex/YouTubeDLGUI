@@ -64,17 +64,31 @@ namespace YouTubeDLGUI
             }
         }
 
+        /// <summary>
+        /// Trim every textbox from excess whitespace. Maybe remove bad characters too.
+        /// </summary>
+        public void SanitizeTextboxes()
+        {
+            txt_outputFileName.Text = txt_outputFileName.Text.Trim();
+            txt_downloadURL.Text = txt_downloadURL.Text.Trim();
+            txt_customArgs.Text = txt_customArgs.Text.Trim();
+        }
+
 
         /// <summary>
         /// Invoke the youtube-dl.exe and pass it arguments from the GUI to download a video/audio file
         /// </summary>
         public void Download()
         {
-            string downloadedFileExt = GetOutputFileFormat();
-
             //24 hour time like 6-27-2016_09-33
             string downloadDateTime = DateTime.Now.ToString("M-d-yyyy_HH-mm");
 
+            //download the target url as either best audio or best video
+            string downloadedFileExt = GetOutputFileFormat();
+            
+            SanitizeTextboxes();
+            
+            //default for a download file name if no name is given
             if (String.IsNullOrEmpty(txt_outputFileName.Text))
             {
                 txt_outputFileName.Text = "youtube-dl-download_" + downloadDateTime + downloadedFileExt;
@@ -83,15 +97,16 @@ namespace YouTubeDLGUI
             //if custom args are given
             if (!String.IsNullOrEmpty(txt_customArgs.Text))
             {
-                string customArgs = txt_downloadURL.Text + " " + txt_customArgs.Text;
+                string customArgs = " " + txt_downloadURL.Text + " " + txt_customArgs.Text;
                 Process.Start(YouTubeDLFilePath, customArgs);
                 txt_log.AppendText(downloadDateTime + ": " + txt_downloadURL.Text + " downloaded with custom args: " + Environment.NewLine + "\t" + txt_customArgs.Text);
                 return;
             }
 
-            string args = " " + txt_downloadURL.Text.Trim() + " -o " + txt_outputPath.Text + "\\" + txt_outputFileName.Text + downloadedFileExt;
+            string args = " " + txt_downloadURL.Text + " -o " + txt_outputPath.Text + "\\" + txt_outputFileName.Text + downloadedFileExt;
 
-            //force audio download from youtube
+            //force audio download from youtube? check if soundcloud works fine
+            //i think this is 128kbps quality too - investigate for higher quality (best)
             if (downloadedFileExt == ".mp3")// && txt_downloadURL.Text.Contains("*youtube.com*")
             {
                 args += " --extract-audio --audio-format mp3 -l";
