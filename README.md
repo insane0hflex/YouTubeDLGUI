@@ -2,9 +2,11 @@
 
 Simple C# WPF program to use [youtube-dl](https://rg3.github.io/youtube-dl/) in a GUI friendly way.
 
-This is a simple GUI that supports the current sites (if you have the latest youtube-dl version that is:
+This is a simple GUI that has been tested to mainly support the following sites:
 - YouTube
 - Soundcloud
+
+It probably works for all other sites youtube-dl supports however.
 
 # Using YouTubeDLGUI
 
