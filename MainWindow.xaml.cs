@@ -54,11 +54,26 @@ namespace YouTubeDLGUI
             {
                 return ".mp3";
             }
-            else
+            else if (rbtn_downloadAsVideo.IsPressed == true)
             {
                 return ".mp4";
             }
+            // mp4 file format by default? kinda here if more file formats are added later...
+            else
+            {
+                return ".mp4"; //mp4 by default?
+                //throw new Exception("No file format chosen");
+            }
         }
+        
+        /// <summary>
+        /// For getting a selection - ie 480p, 720p, best, etc
+        /// </summary>
+        public string GetQualitySelection()
+        {
+            throw new NotImplementedException();
+        }
+        
 
         /// <summary>
         /// Trim every textbox from excess whitespace. Maybe remove bad characters too.
