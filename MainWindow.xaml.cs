@@ -106,7 +106,7 @@ namespace YouTubeDLGUI
             }
 
             //if custom args are given
-            if (!String.IsNullOrEmpty(txt_customArgs.Text))
+            if (!String.IsNullOrEmpty(txt_customArgs.Text) && chkbx_customArgs.IsChecked == true)
             {
                 string customArgs = " " + txt_downloadURL.Text + " " + txt_customArgs.Text;
                 Process.Start(YouTubeDLFilePath, customArgs);
@@ -135,6 +135,14 @@ namespace YouTubeDLGUI
 
         }
 
+
+        /// <summary>
+        /// Toggle CustomArgs enabled if custom args is checked
+        /// </summary>
+        private void chkbx_customArgs_Click(object sender, RoutedEventArgs e)
+        {
+            txt_customArgs.IsEnabled = (chkbx_customArgs.IsChecked == true) ? true : false;
+        }
 
         /// <summary>
         /// Dunno if ever needed
