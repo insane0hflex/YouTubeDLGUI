@@ -14,7 +14,11 @@ Put the YouTubeDLGUI.exe in the same directory as your youtube-dl.exe. If you wa
 
 
 # ToDos
-~~- Download best video~~
-~~- Download best audio~~
+
+- ~~Download best video~~
+- ~~Download best audio~~
+- Fix for Soundcloud downloading some files as .wav - need to force audio format
 - List all download options in dropdown menu
 - Playlist or batch download support
+
+
