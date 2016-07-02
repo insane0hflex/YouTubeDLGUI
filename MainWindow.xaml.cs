@@ -50,11 +50,11 @@ namespace YouTubeDLGUI
         private string GetOutputFileFormat()
         {
             // == true cuz nullable bool
-            if (rbtn_downloadAsAudio.IsPressed == true)
+            if (rbtn_downloadAsAudio.IsChecked == true)
             {
                 return ".mp3";
             }
-            else if (rbtn_downloadAsVideo.IsPressed == true)
+            else if (rbtn_downloadAsVideo.IsChecked == true)
             {
                 return ".mp4";
             }
@@ -120,13 +120,14 @@ namespace YouTubeDLGUI
             //i think this is 128kbps quality too - investigate for higher quality (best)
             if (downloadedFileExt == ".mp3")// && txt_downloadURL.Text.Contains("*youtube.com*")
             {
-                args += " --extract-audio --audio-format mp3 -l";
+                //args += " --extract-audio --audio-format mp3 -l";
+                args += " --audio-format mp3 ";
             }
 
             //shorter filename?
             //In some cases, you don't want special characters such as 中, spaces, or &, 
             //such as when transferring the downloaded filename to a Windows system
-            args += " --restrict-filenames";
+            //args += " --restrict-filenames";
 
             Process.Start(YouTubeDLFilePath, args);
 
@@ -142,6 +143,11 @@ namespace YouTubeDLGUI
         private void chkbx_customArgs_Click(object sender, RoutedEventArgs e)
         {
             txt_customArgs.IsEnabled = (chkbx_customArgs.IsChecked == true) ? true : false;
+        }
+
+        private void btn_openOutputFolder_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(txt_outputPath.Text);
         }
 
         /// <summary>

@@ -13,7 +13,7 @@
         <Label x:Name="label1" Content="Output Path" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_download" Content="Download" HorizontalAlignment="Left" Margin="495,162,0,0" VerticalAlignment="Top" Width="152" Click="btn_download_Click" Height="23"/>
         <TextBox x:Name="txt_log" HorizontalAlignment="Left" IsReadOnly="True" Height="117" Margin="10,199,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="770" ScrollViewer.VerticalScrollBarVisibility="Auto" />
-        <TextBox x:Name="txt_outputFileName" AcceptsReturn="False" AcceptsTab="False" HorizontalAlignment="Left" Height="23" Margin="119,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="191"/>
+        <TextBox x:Name="txt_outputFileName" AcceptsReturn="False" AcceptsTab="False" HorizontalAlignment="Left" Height="23" Margin="119,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="471"/>
         <Label x:Name="label2" Content="Output File Name" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label3" Content="Program Log:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,169,0,0" Height="25"/>
         <TextBox x:Name="txt_customArgs" HorizontalAlignment="Left" Height="23" Margin="119,120,0,0" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" Text="" VerticalAlignment="Top" Width="661" IsEnabled="False" />
@@ -21,6 +21,7 @@
         <RadioButton x:Name="rbtn_downloadAsVideo" IsChecked="True" Content="Download as video .mp4" GroupName="FileFormat" HorizontalAlignment="Left" Margin="150,164,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rbtn_downloadAsAudio" Content="Download as audio .mp3" GroupName="FileFormat" HorizontalAlignment="Left" Margin="335,166,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="chkbx_customArgs" Content="Custom Args?" HorizontalAlignment="Left" Margin="15,125,0,0" VerticalAlignment="Top"  Click="chkbx_customArgs_Click" RenderTransformOrigin="-0.159,0.769"/>
+        <Button x:Name="btn_openOutputFolder" Content="Open Output Folder" HorizontalAlignment="Left" Margin="610,88,0,0" VerticalAlignment="Top" Width="170" Click="btn_openOutputFolder_Click"/>
 
     </Grid>
 </Window>
