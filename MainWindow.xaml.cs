@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,13 @@ namespace YouTubeDLGUI
             InitializeComponent();
 
             txt_outputPath.Text = Environment.CurrentDirectory;
+
+            if (!File.Exists(YouTubeDLFilePath))
+            {
+                MessageBox.Show("Could not find youtube-dl in the current directory of " + Environment.CurrentDirectory);
+
+                Environment.Exit(1);
+            }
 
         }
 
@@ -98,7 +106,7 @@ namespace YouTubeDLGUI
             string downloadedFileExt = GetOutputFileFormat();
             
             SanitizeTextboxes();
-            
+
             //default for a download file name if no name is given
             if (String.IsNullOrEmpty(txt_outputFileName.Text))
             {
@@ -114,20 +122,28 @@ namespace YouTubeDLGUI
                 return;
             }
 
-            string args = " " + txt_downloadURL.Text + " -o " + txt_outputPath.Text + "\\" + txt_outputFileName.Text + downloadedFileExt;
+            string args = " " + txt_downloadURL.Text + " -o " + txt_outputPath.Text + "\\" + txt_outputFileName.Text;
 
             //force audio download from youtube? check if soundcloud works fine
             //i think this is 128kbps quality too - investigate for higher quality (best)
             if (downloadedFileExt == ".mp3")// && txt_downloadURL.Text.Contains("*youtube.com*")
             {
-                //args += " --extract-audio --audio-format mp3 -l";
-                args += " --audio-format mp3 ";
+                //this isnt working (for like soundcloud too)??? for youtube only??
+                //args += " --extract-audio --audio-format mp3 ";
+                //args += " --audio-format mp3 ";
+
+                //for soundcloud - download an mp3 if the soundcloud also has a .wav
+                if (txt_downloadURL.Text.Contains("soundcloud"))
+                {
+                    args += " -f http_mp3_128_url ";
+                }
             }
 
             //shorter filename?
             //In some cases, you don't want special characters such as 中, spaces, or &, 
             //such as when transferring the downloaded filename to a Windows system
             //args += " --restrict-filenames";
+
 
             Process.Start(YouTubeDLFilePath, args);
 
